@@ -1,0 +1,33 @@
+Index: work/src/de/willuhn/datasource/db/MyDriver.java
+===================================================================
+--- work.orig/src/de/willuhn/datasource/db/MyDriver.java
++++ work/src/de/willuhn/datasource/db/MyDriver.java
+@@ -16,7 +16,9 @@ import java.sql.Connection;
+ import java.sql.Driver;
+ import java.sql.DriverPropertyInfo;
+ import java.sql.SQLException;
++import java.sql.SQLFeatureNotSupportedException;
+ import java.util.Properties;
++import java.util.logging.Logger;
+ 
+ /**
+  * Hilfsklasse da java.sql.DriverManager nur Driver akzeptiert,
+@@ -94,6 +96,11 @@ public class MyDriver implements Driver
+     return driver.getPropertyInfo(url,info);
+   }
+ 
++  public Logger getParentLogger() throws SQLFeatureNotSupportedException
++  {
++    throw new SQLFeatureNotSupportedException();
++  }
++
+ }
+ 
+ 
+@@ -105,4 +112,4 @@ public class MyDriver implements Driver
+  * Revision 1.1  2004/12/07 01:27:58  willuhn
+  * @N Dummy Driver
+  *
+- **********************************************************************/
+\ No newline at end of file
++ **********************************************************************/
