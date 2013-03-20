@@ -10,7 +10,7 @@ SRC_URI="http://www.willuhn.de/products/jameica/releases/${PV}/util/de_willuhn_u
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 COMMON_DEP=""
