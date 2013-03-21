@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="org.swtchart">
+    <target name="init">
+        <mkdir dir="org.swtchart/bin"/>
+        <copy file="org.swtchart/META-INF/MANIFEST.MF"
+            tofile="org.swtchart/META-INF/MANIFEST.MF.OUT"/>
+        <replace file="org.swtchart/META-INF/MANIFEST.MF.OUT"
+            token="qualifier" value="dist" />
+        <replace file="org.swtchart/META-INF/MANIFEST.MF.OUT"
+            token=";singleton:=true" value="" />
+
+        <mkdir dir="org.swtchart.ext/bin"/>
+        <copy file="org.swtchart.ext/META-INF/MANIFEST.MF"
+            tofile="org.swtchart.ext/META-INF/MANIFEST.MF.OUT"/>
+        <replace file="org.swtchart.ext/META-INF/MANIFEST.MF.OUT"
+            token="qualifier" value="dist" />
+        <replace file="org.swtchart.ext/META-INF/MANIFEST.MF.OUT"
+            token=";singleton:=true" value="" />
+    </target>
+    <target name="clean">
+        <delete dir="org.swtchart/bin"/>
+        <delete file="org.swtchart/META-INF/MANIFEST.MF.OUT"/>
+        <delete file="org.swtchart.jar"/>
+        
+        <delete dir="org.swtchart.ext/bin"/>
+        <delete file="org.swtchart.ext/META-INF/MANIFEST.MF.OUT"/>
+        <delete file="org.swtchart.ext.jar"/>
+    </target>
+    <target depends="init" name="build">
+        <javac debug="true" destdir="org.swtchart/bin">
+            <src path="org.swtchart/src"/>
+            <classpath>
+                <pathelement location="/usr/share/swt-3.7/lib/swt.jar"/>
+                <pathelement location="org.swtchart/bin"/>
+            </classpath>
+        </javac>
+        <jar destfile="org.swtchart.jar" manifest="org.swtchart/META-INF/MANIFEST.MF.OUT">
+            <manifest>
+                <attribute name="Class-Path" value="/usr/share/swt-3.7/lib/swt.jar"/>
+            </manifest>
+            <fileset dir="org.swtchart/bin"/>
+        </jar>
+        <javac debug="true" destdir="org.swtchart.ext/bin">
+            <src path="org.swtchart.ext/src"/>
+            <classpath>
+                <pathelement location="/usr/share/swt-3.7/lib/swt.jar"/>
+                <pathelement location="org.swtchart/bin"/>
+                <pathelement location="/usr/share/eclipse-jface-3.8/lib/org.eclipse.jface.jar" />
+                <pathelement location="/usr/share/eclipse-core-commands-3.6/lib/org.eclipse.core.commands.jar" />
+            </classpath>
+        </javac>
+        <jar destfile="org.swtchart.ext.jar" manifest="org.swtchart.ext/META-INF/MANIFEST.MF.OUT">
+            <manifest>
+                <attribute name="Class-Path" value="/usr/share/swt-3.7/lib/swt.jar:/usr/share/swt-chart/lib/swt-chart.jar"/>
+            </manifest>
+            <fileset dir="org.swtchart.ext/bin"/>
+        </jar>
+    </target>
+    <target name="doc">
+        <javadoc destdir="api">
+            <fileset dir="org.swtchart/src"/>
+            <fileset dir="org.swtchart.ext/src" />
+        </javadoc>
+    </target>
+</project>

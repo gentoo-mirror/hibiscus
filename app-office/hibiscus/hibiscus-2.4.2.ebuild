@@ -18,8 +18,8 @@ IUSE=""
 COMMON_DEP="=dev-java/jameica-${MY_PV}*
         >=net-libs/willuhn-hbci4java-2.5.12.30
 	=dev-java/obantoo-1.5.2
-	>=dev-java/supercsv-1.31"
-	#>=dev-java/swt-chart-0.7.0"
+	>=dev-java/supercsv-1.31
+	>=dev-java/swt-chart-0.7.0"
 
 RDEPEND=">=virtual/jre-1.6
         ${COMMON_DEP}"
@@ -33,12 +33,13 @@ java_prepare() {
 	#epatch "${FILESDIR}/${PV}-hbci4java-api.patch"
 	epatch "${FILESDIR}/${PV}-hbci4java-so-filename.patch"
 	
-        rm -v ${S}/lib/*.{jar,so,dll,jnilib} || die
+    #rm -v ${S}/lib/*.{jar,so,dll,jnilib} || die
+	#rm -rv ${S}/lib/swtchart
+	rm -rv -v ${S}/lib/*
 
 	#rm -v ${S}/lib/{itext-2.0.1.jar,obantoo-bin-1.5.1.jar,postgresql-8.3-604.jdbc3.jar,supercsv-1.31.jar,libct.so,libhbci4java-card-freebsd-64.so,libhbci4java-card-linux-32.so,libhbci4java-card-linux-64.so,libhbci4java-sizrdh-linux-gcc2.so,libhbci4java-sizrdh-linux-gcc3.so,libtowitoko-2.0.7-amd64.so,libtowitoko-2.0.7.so,hbci4java-card-win32.dll,hbci4java-card-win32_x86-64.dll,hbci4java-sizrdh-win32.dll,libhbci4java-card-mac-os-x-10.6.jnilib,libhbci4java-card-mac.jnilib} || die
 
-        #java-pkg_jar-from --with-dependencies --into ${S}/lib/ willuhn-hbci4java,obantoo,jameica,supercsv,swt-chart
-	java-pkg_jar-from --with-dependencies --into ${S}/lib/ willuhn-hbci4java,obantoo,jameica,supercsv
+        java-pkg_jar-from --with-dependencies --into ${S}/lib/ willuhn-hbci4java,obantoo,jameica,supercsv,swt-chart
 }
 
 src_compile() {
@@ -53,7 +54,7 @@ src_install() {
 	insinto ${plugin_dir}
 	
 	doins plugin.xml
-        doins releases/${PV}-0/${PN}/${PN}.jar
+    doins releases/${PV}-0/${PN}/${PN}.jar
 	
 	cp -R "${S}/updates" "${D}${plugin_dir}" || die "Install failed!"
 	cp -R "${S}/sql" "${D}${plugin_dir}" || die "Install failed!"
@@ -63,6 +64,8 @@ src_install() {
 	dosym "$(java-pkg_getjars willuhn-hbci4java)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars obantoo)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars supercsv)" ${plugin_dir}/lib/
+	dosym "$(java-pkg_getjars swt-chart)" ${plugin_dir}/lib/
+	dosym "$(java-pkg_getjars itext-5)" ${plugin_dir}/lib/
 
 	newicon icons/${PN}-icon-16x16.png ${PN}-icon-16x16.png || die "newicon failed"
         newicon icons/${PN}-icon-32x32.png ${PN}-icon-32x32.png || die "newicon failed"
