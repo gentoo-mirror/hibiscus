@@ -64,13 +64,15 @@ src_install() {
 	dosym "$(java-pkg_getjars willuhn-hbci4java)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars obantoo)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars supercsv)" ${plugin_dir}/lib/
-	dosym "$(java-pkg_getjars swt-chart)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars itext-5)" ${plugin_dir}/lib/
 
+	dosym "$(java-pkg_getjar swt-chart org.swtchart.jar)" ${plugin_dir}/lib/
+	dosym "$(java-pkg_getjar swt-chart org.swtchart.ext.jar)" ${plugin_dir}/lib/
+
 	newicon icons/${PN}-icon-16x16.png ${PN}-icon-16x16.png || die "newicon failed"
-        newicon icons/${PN}-icon-32x32.png ${PN}-icon-32x32.png || die "newicon failed"
+    newicon icons/${PN}-icon-32x32.png ${PN}-icon-32x32.png || die "newicon failed"
 	newicon icons/${PN}-icon-64x64.png ${PN}-icon-64x64.png || die "newicon failed"
 
-        use doc && java-pkg_dojavadoc releases/${PV}-0/javadoc
-        use source && java-pkg_dosrc src/de
+    use doc && java-pkg_dojavadoc releases/${PV}-0/javadoc
+    use source && java-pkg_dosrc src/de
 }
