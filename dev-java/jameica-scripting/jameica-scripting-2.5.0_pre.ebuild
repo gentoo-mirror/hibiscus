@@ -47,8 +47,8 @@ src_install() {
 	local INST_DIR="/usr/share/jameica/plugins/${MY_PN}"
 
 	dodir "$INST_DIR"
-        insinto ${INST_DIR}
-        doins releases/${MY_PV}-0/${MY_PN}/${MY_PN}.jar || die "doins failed"
+    insinto ${INST_DIR}
+    doins releases/${MY_PV}-0/${MY_PN}/${MY_PN}.jar || die "doins failed"
 	doins releases/${MY_PV}-0/${MY_PN}/plugin.xml || die "doins failed"
 
         #use doc && java-pkg_dojavadoc releases/${PV}-0/javadoc
