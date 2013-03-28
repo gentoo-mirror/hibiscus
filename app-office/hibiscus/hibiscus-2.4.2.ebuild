@@ -18,7 +18,7 @@ IUSE=""
 COMMON_DEP="=dev-java/jameica-${MY_PV}*
         >=net-libs/willuhn-hbci4java-2.5.12.30
 	=dev-java/obantoo-1.5.2
-	>=dev-java/supercsv-1.31
+	>=dev-java/super-csv-1.31:0
 	>=dev-java/swt-chart-0.7.0"
 
 RDEPEND=">=virtual/jre-1.6
@@ -39,7 +39,7 @@ java_prepare() {
 
 	#rm -v ${S}/lib/{itext-2.0.1.jar,obantoo-bin-1.5.1.jar,postgresql-8.3-604.jdbc3.jar,supercsv-1.31.jar,libct.so,libhbci4java-card-freebsd-64.so,libhbci4java-card-linux-32.so,libhbci4java-card-linux-64.so,libhbci4java-sizrdh-linux-gcc2.so,libhbci4java-sizrdh-linux-gcc3.so,libtowitoko-2.0.7-amd64.so,libtowitoko-2.0.7.so,hbci4java-card-win32.dll,hbci4java-card-win32_x86-64.dll,hbci4java-sizrdh-win32.dll,libhbci4java-card-mac-os-x-10.6.jnilib,libhbci4java-card-mac.jnilib} || die
 
-        java-pkg_jar-from --with-dependencies --into ${S}/lib/ willuhn-hbci4java,obantoo,jameica,supercsv,swt-chart
+        java-pkg_jar-from --with-dependencies --into ${S}/lib/ willuhn-hbci4java,obantoo,jameica,super-csv,swt-chart
 }
 
 src_compile() {
@@ -63,7 +63,7 @@ src_install() {
 
 	dosym "$(java-pkg_getjars willuhn-hbci4java)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars obantoo)" ${plugin_dir}/lib/
-	dosym "$(java-pkg_getjars supercsv)" ${plugin_dir}/lib/
+	dosym "$(java-pkg_getjars super-csv)" ${plugin_dir}/lib/
 	dosym "$(java-pkg_getjars itext-5)" ${plugin_dir}/lib/
 
 	dosym "$(java-pkg_getjar swt-chart org.swtchart.jar)" ${plugin_dir}/lib/

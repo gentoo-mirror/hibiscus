@@ -14,7 +14,7 @@ DESCRIPTION="A Java Library for HBCI/FinTS (Hibiscus Branch)"
 HOMEPAGE="https://github.com/willuhn/hbci4java"
 SRC_URI="https://github.com/willuhn/hbci4java/tarball/PATCH_${PATCH_VERSION} -> ${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+smartcard"
@@ -38,17 +38,15 @@ QA_SONAME="usr/$(get_libdir)/lib${PN}-chipcard-linux.so"
 EANT_BUILD_TARGET="package"
 
 #pkg_setup() {
-	# FIXME use smartcard && EANT_BUILD_TARGET="compile-chipcard ${EANT_BUILD_TARGET}"
+#	use smartcard && EANT_BUILD_TARGET="compile-chipcard ${EANT_BUILD_TARGET}"
 #}
 
 src_unpack() {
-        unpack ${A}
-        mv ${PN}-* "${S}"
+	unpack ${A}
+	mv ${PN}-* "${S}"
 }
 
 java_prepare() {
-	#epatch "${FILESDIR}/${PV}-makefile.patch"
-	#epatch "${FILESDIR}/${PV}-build.patch"
 	eant clean
 }
 
