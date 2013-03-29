@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/supercsv/v1-branch/v${PV}/${MY_P}.zip"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 COMMON_DEPS="dev-java/spiffy"
