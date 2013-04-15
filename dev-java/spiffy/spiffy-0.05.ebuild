@@ -43,12 +43,8 @@ src_test() {
 	PN="${PN}-test" \
 	java-pkg-simple_src_compile
 
-	ejunit4 -cp "${PN}.jar:${PN}-test.jar:$(java-pkg_getjars ${JAVA_GENTOO_CLASSPATH})" \
-	spiffy.core.lang.StringHelperTest \
-	spiffy.core.util.CollectionHelperTest \
-	spiffy.core.util.HashMapBuilderTest \
-	spiffy.core.util.PushBackIteratorTest \
-	spiffy.core.util.ThreeDHashMapTest \
-	spiffy.core.util.TwoDHashMapTest \
-	spiffy.junit.AssertHelperTest
+	local tests
+	tests=$(find test -name '*.java' | sed -e 's/\//./g;s/^test.//;s/.java$//' || die)
+
+	ejunit4 -cp "${PN}.jar:${PN}-test.jar:$(java-pkg_getjars ${JAVA_GENTOO_CLASSPATH})" $tests
 }
