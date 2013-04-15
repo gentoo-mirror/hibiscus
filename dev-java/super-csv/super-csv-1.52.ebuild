@@ -24,15 +24,29 @@ COMMON_DEPS="dev-java/spiffy"
 
 DEPEND="${COMMON_DEPS}
 	app-arch/unzip
-	>=virtual/jdk-1.5"
+	>=virtual/jdk-1.5
+	dev-java/junit:4"
 RDEPEND="${COMMON_DEPS}
 	>=virtual/jre-1.5"
 
 JAVA_SRC_DIR="src"
-JAVA_GENTOO_CLASSPATH="spiffy"
+JAVA_GENTOO_CLASSPATH="spiffy,junit-4"
 
 src_unpack() {
 	unpack ${A}
 	unpack ./${MY_P}-source.zip
 	rm -v *.jar *.zip || die
 }
+
+# Not working
+#src_test() {
+#	JAVA_SRC_DIR="test" \
+#	JAVA_CLASSPATH_EXTRA="${PN}.jar" \
+#	PN="${PN}-test" \
+#	java-pkg-simple_src_compile
+#
+#	local tests
+#	tests=$(find test -name '*.java' | sed -e 's/\//./g;s/^test.//;s/.java$//' || die)
+#	
+#	ejunit4 -cp "${PN}.jar:${PN}-test.jar:$(java-pkg_getjars ${JAVA_GENTOO_CLASSPATH})" $tests
+#}
