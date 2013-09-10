@@ -8,16 +8,18 @@ JAVA_PKG_IUSE="doc source"
 WANT_ANT_TASKS="ant-nodeps"
 inherit eutils java-pkg-2 java-ant-2
 
-PATCH_VERSION="$(get_version_component_range 4)"
+COMMIT="b7c9c546fbc33010e51a74f4285da7d7378fb76f"
 
 DESCRIPTION="A Java Library for HBCI/FinTS (Hibiscus Branch)"
 HOMEPAGE="https://github.com/willuhn/hbci4java"
-SRC_URI="https://github.com/willuhn/hbci4java/tarball/PATCH_${PATCH_VERSION} -> ${P}.tar.gz"
+SRC_URI="https://github.com/willuhn/hbci4java/archive/${COMMIT}.zip -> ${P}.zip"
 
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+smartcard"
+
+S="${WORKDIR}/hbci4java-${COMMIT}"
 
 COMMON_DEP="
 	dev-java/xerces:2
