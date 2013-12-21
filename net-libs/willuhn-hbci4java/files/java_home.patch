@@ -1,0 +1,10 @@
+Index: hbci4java-dc095021274a54aeb8778b20ed22e84ddf0f5a8d/chipcard/src/frontend/Makefile
+===================================================================
+--- hbci4java-dc095021274a54aeb8778b20ed22e84ddf0f5a8d.orig/chipcard/src/frontend/Makefile
++++ hbci4java-dc095021274a54aeb8778b20ed22e84ddf0f5a8d/chipcard/src/frontend/Makefile
+@@ -1,4 +1,4 @@
+-JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
++JAVA_HOME = ${JAVA_HOME-$(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")}
+ DEFINES   = -D__UNIX
+ INCLUDES  = -I../include -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+ WARNINGS  = -Wall
