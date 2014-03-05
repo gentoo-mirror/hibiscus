@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="doc source"
 WANT_ANT_TASKS="ant-nodeps"
 inherit eutils java-pkg-2 java-ant-2
 
-COMMIT="dc095021274a54aeb8778b20ed22e84ddf0f5a8d"
+COMMIT="65daa92ff8f64bb0d6af7a5f4adf5e43df4378fa"
 
 DESCRIPTION="A Java Library for HBCI/FinTS (Hibiscus Branch)"
 HOMEPAGE="https://github.com/willuhn/hbci4java"

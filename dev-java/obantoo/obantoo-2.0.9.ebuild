@@ -1,14 +1,16 @@
 EAPI="2"
 JAVA_PKG_IUSE="doc source"
 
-inherit eutils java-pkg-2 java-ant-2
+inherit eutils java-pkg-2 java-ant-2 cvs
 
-CVS_REV="1.6"
+ECVS_SERVER="obantoo.cvs.sourceforge.net:/cvsroot/${PN}"
+ECVS_MODULE="${PN}"
+ECVS_DATE="\"2013-11-12 21:34:46 UTC\""
 
 DESCRIPTION="A Java Library for HBCI (Homebanking Computer Interface) / FinTS (Financial Transaction Services)"
 HOMEPAGE="http://obantoo.sourceforge.net/"
 #SRC_URI="mirror://sourceforge/${PN}/${P}.zip"
-SRC_URI="http://${PN}.cvs.sourceforge.net/viewvc/${PN}/${PN}/?view=tar&revision=${CVS_REV} -> ${P}.tar.gz"
+#SRC_URI="http://${PN}.cvs.sourceforge.net/viewvc/${PN}/${PN}/?view=tar&revision=${CVS_REV} -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
