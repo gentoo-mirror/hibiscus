@@ -16,8 +16,8 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 COMMON_DEP="=dev-java/jameica-${MY_PV}*
-        >=net-libs/willuhn-hbci4java-2.5.12_p20140617
-	>=dev-java/obantoo-2.0.9
+        >=net-libs/willuhn-hbci4java-2.5.12_p20140731
+	>=dev-java/obantoo-2.1.6
 	>=dev-java/super-csv-1.31:0
 	>=dev-java/swt-chart-0.7.0"
 
