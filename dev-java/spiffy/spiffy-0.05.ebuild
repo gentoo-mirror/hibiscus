@@ -21,9 +21,7 @@ COMMON_DEPS="dev-java/log4j"
 
 DEPEND="${COMMON_DEPS}
 	app-arch/unzip
-	test? (
-		dev-java/junit:4
-	)
+	dev-java/junit:4
 	dev-java/struts:1.2
 	>=virtual/jdk-1.5"
 RDEPEND="${COMMON_DEPS}

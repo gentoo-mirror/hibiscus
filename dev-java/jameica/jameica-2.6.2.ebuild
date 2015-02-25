@@ -25,7 +25,7 @@ COMMON_DEP="~dev-java/willuhn-util-${MY_PV}
 	>=dev-java/commons-lang-2.6
 	>=dev-java/commons-logging-1.1.1
 	dev-java/swtcalendar
-	>=dev-java/bcprov-1.44
+	dev-java/bcprov:1.45
 	>=dev-java/h2-1.2.145
 	>=dev-java/commons-lang-2.6
 	>=dev-java/swt-paperclips-1.0.4
@@ -58,7 +58,7 @@ java_prepare() {
 		xmlrpc="xmlrpc-3"
 	fi
 
-	EANT_GENTOO_CLASSPATH="willuhn-util,willuhn-datasource,nanoxml,velocity,${xmlrpc},commons-cli-1,commons-collections,commons-lang-2.1,commons-logging,swtcalendar,bcprov,h2,swt-paperclips,eclipse-jface-3.1,eclipse-osgi-3.1,eclipse-ui-forms-3.1,eclipse-core-runtime-3.1"
+	EANT_GENTOO_CLASSPATH="willuhn-util,willuhn-datasource,nanoxml,velocity,${xmlrpc},commons-cli-1,commons-collections,commons-lang-2.1,commons-logging,swtcalendar,bcprov-1.45,h2,swt-paperclips,eclipse-jface-3.1,eclipse-osgi-3.1,eclipse-ui-forms-3.1,eclipse-core-runtime-3.1"
 
 	java-pkg_jar-from --with-dependencies --into gentoo "${EANT_GENTOO_CLASSPATH}"
 }
