@@ -1,0 +1,13 @@
+Index: hbci4java-bc2108ad8dabe468e3fca314c4314d63d9a036ef/chipcard/src/frontend/Makefile
+===================================================================
+--- hbci4java-bc2108ad8dabe468e3fca314c4314d63d9a036ef.orig/chipcard/src/frontend/Makefile
++++ hbci4java-bc2108ad8dabe468e3fca314c4314d63d9a036ef/chipcard/src/frontend/Makefile
+@@ -1,6 +1,6 @@
+-JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
++JAVA_HOME = ${JAVA_HOME-$(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")}
+ DEFINES   = -D__UNIX
+-INCLUDES  = -I../include -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
++INCLUDES  = -I../include -I/opt/icedtea-bin-6.1.12.7/include/ -I/opt/icedtea-bin-6.1.12.7/include/linux/
+ WARNINGS  = -Wall
+ # removed "-Werror -pedantic" because of dlsym() typecast problem
+ 

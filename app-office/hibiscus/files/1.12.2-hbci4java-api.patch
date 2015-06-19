@@ -1,0 +1,33 @@
+Index: hibiscus/src/de/willuhn/jameica/hbci/io/MT940UmsatzImporter.java
+===================================================================
+--- hibiscus.orig/src/de/willuhn/jameica/hbci/io/MT940UmsatzImporter.java
++++ hibiscus/src/de/willuhn/jameica/hbci/io/MT940UmsatzImporter.java
+@@ -246,11 +246,13 @@ public class MT940UmsatzImporter impleme
+         public boolean onlyBPDGVs() {return false;}
+         public boolean needUserKeys() {return false;}
+         public boolean needInstKeys() {return false;}
++	public boolean needDigKey() {return false;}
+         public boolean isSupported() {return false;}
+         public boolean hasMySigKey() {return false;}
+         public boolean hasMyEncKey() {return false;}
+         public boolean hasInstSigKey() {return false;}
+         public boolean hasInstEncKey() {return false;}
++	public boolean hasInstDigKey() {return false;}
+         public String getUserId() {return null;}
+         public String getUPDVersion() {return null;}
+         public Properties getUPD() {return null;}
+@@ -288,6 +290,7 @@ public class MT940UmsatzImporter impleme
+         public void clearUPD() {}
+         public void clearInstSigKey() {}
+         public void clearInstEncKey() {}
++	public void clearInstDigKey() {}
+         public void clearBPD(){}
+         public void changePassphrase(){}
+       };
+@@ -356,4 +359,4 @@ public class MT940UmsatzImporter impleme
+  * Revision 1.1  2006/01/17 00:22:36  willuhn
+  * @N erster Code fuer Swift MT940-Import
+  *
+- ******************************************************************************/
+\ No newline at end of file
++ ******************************************************************************/

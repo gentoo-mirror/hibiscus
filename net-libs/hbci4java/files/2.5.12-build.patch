@@ -1,0 +1,60 @@
+Index: hbci4java-2.5.12-src/build.xml
+===================================================================
+--- hbci4java-2.5.12-src.orig/build.xml
++++ hbci4java-2.5.12-src/build.xml
+@@ -14,7 +14,11 @@
+     </path>
+     
+     <target name="compile"
+-     description="compile all the needed stuff; after that add dir 'classes' to the classpath; in dir 'chipcard/lib' you will find the ddv-library needed for accessing your chipcard terminal">
++     description="compile all the needed stuff; after that add dir 'classes' to the classpath; in dir 'chipcard/lib' you will find the ddv-library needed for accessing your chipcard terminal"
++     depends="compile-java, compile-chipcard" />
++
++    <target name="compile-java"
++     description="Compile the Java library">
+         <mkdir dir="${classes}"/>
+         <javac srcdir="${src}" destdir="${classes}" 
+                debug="on" encoding="ISO-8859-1"
+@@ -39,17 +43,20 @@
+ 	    </fileset>
+ 	    <mapper type="glob" from="messages*" to="HBCIMessages*" />
+ 	</copy>
++    </target>
+ 
+-        <javah class="org.kapott.hbci.passport.HBCIPassportDDV" 
+-               outputFile="${chipcard}/src/include/frontend.h" 
++    <target name="compile-chipcard" depends="compile-java"
++     description="Compiles the driver for chipcard terminals">
++	<javah class="org.kapott.hbci.passport.HBCIPassportDDV"
++               outputFile="${chipcard}/src/include/frontend.h"
+                classpath="${classes}"/>
+-        
++
+         <exec executable="${make}" os="Linux">
+             <arg line="-C ${chipcard}"/>
+         </exec>
+     </target>
+     
+-    <target name="package" depends="compile">
++    <target name="package" depends="compile-java">
+         <mkdir dir="${dist}/jar"/>
+         <jar destfile="${dist}/jar/hbci4java.jar" 
+              basedir="${classes}" compress="true">
+@@ -96,7 +103,7 @@
+         <include name="tools/HBCIBatch.java"/>
+     </fileset>
+ 
+-    <target name="javadoc" depends="compile"
++    <target name="javadoc" depends="compile-java"
+             description="create javadoc documentation">
+         <mkdir dir="${doc}/javadoc" />
+         <javadoc classpath="${classes}"
+@@ -111,7 +118,7 @@
+         </javadoc>
+     </target>
+ 
+-    <target name="dist" depends="package,javadoc"
++    <target name="dist" depends="compile,package,javadoc"
+             description="bundle all required stuff in a single directory (dir 'dist').">
+ 
+         <mkdir dir="${dist}/templates"/>
