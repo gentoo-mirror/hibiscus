@@ -10,7 +10,7 @@ inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="A port of Kai Toedter's  JCalendar to Eclipse's SWT."
 HOMEPAGE="http://swtcalendar.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}/${PN}-src-${PV}.zip"
+SRC_URI="mirror://sourceforge/${PN}/${PN}-src-${PV}.zip"
 
 LICENSE="MIT"
 SLOT="0"
