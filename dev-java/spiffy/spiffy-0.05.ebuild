@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 inherit eutils java-pkg-2 java-pkg-simple
 
@@ -28,7 +28,7 @@ RDEPEND="${COMMON_DEPS}
 	>=virtual/jre-1.5"
 
 JAVA_SRC_DIR="src"
-JAVA_GENTOO_CLASSPATH="junit-4,log4j,struts-1.2"
+JAVA_GENTOO_CLASSPATH="log4j,struts-1.2,junit-4"
 
 src_unpack() {
 	unpack ${A}

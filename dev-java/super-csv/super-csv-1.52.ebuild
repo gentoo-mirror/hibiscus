@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 MY_PN="SuperCSV"
 MY_P="${MY_PN}-${PV}"
@@ -20,17 +20,20 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-COMMON_DEPS="dev-java/spiffy"
+CDEPEND="dev-java/spiffy"
 
-DEPEND="${COMMON_DEPS}
+DEPEND="${CDEPEND}
 	app-arch/unzip
 	>=virtual/jdk-1.5
-	dev-java/junit:4"
-RDEPEND="${COMMON_DEPS}
+	test? (
+		dev-java/junit:4
+		dev-java/hamcrest-core
+	)"
+RDEPEND="${CDEPEND}
 	>=virtual/jre-1.5"
 
 JAVA_SRC_DIR="src"
-JAVA_GENTOO_CLASSPATH="spiffy,junit-4"
+JAVA_GENTOO_CLASSPATH="spiffy,junit-4,hamcrest-core"
 
 src_unpack() {
 	unpack ${A}
@@ -38,15 +41,14 @@ src_unpack() {
 	rm -v *.jar *.zip || die
 }
 
-# Not working
-#src_test() {
-#	JAVA_SRC_DIR="test" \
-#	JAVA_CLASSPATH_EXTRA="${PN}.jar" \
-#	PN="${PN}-test" \
-#	java-pkg-simple_src_compile
-#
-#	local tests
-#	tests=$(find test -name '*.java' | sed -e 's/\//./g;s/^test.//;s/.java$//' || die)
-#	
-#	ejunit4 -cp "${PN}.jar:${PN}-test.jar:$(java-pkg_getjars ${JAVA_GENTOO_CLASSPATH})" $tests
-#}
+src_test() {
+	JAVA_SRC_DIR="test" \
+	JAVA_CLASSPATH_EXTRA="${PN}.jar" \
+	PN="${PN}-test" \
+	java-pkg-simple_src_compile
+
+	local tests
+	tests=$(find test -name '*.java' | sed -e 's/\//./g;s/^test.//;s/.java$//' || die)
+	
+	ejunit4 -cp "${PN}.jar:${PN}-test.jar:$(java-pkg_getjars ${JAVA_GENTOO_CLASSPATH})" $tests
+}
