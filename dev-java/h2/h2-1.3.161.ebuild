@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Java SQL Database"
 HOMEPAGE="http://www.h2database.com/"
-SRC_URI="http://www.h2database.com/${PN}-${MY_PV}.zip"
+SRC_URI="http://h2database.googlecode.com/files/${PN}-${MY_PV}.zip"
 LICENSE="EPL-1.0 H2-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
