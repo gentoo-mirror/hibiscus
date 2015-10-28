@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <herd>java</herd>
+  <maintainer>
+    <email>gentoo@posteo.de</email>
+    <name>Fabian Köster</name>
+  </maintainer>
+  <use>
+    <flag name="ui">Enable user interface classes</flag>
+  </use>
+</pkgmetadata>
