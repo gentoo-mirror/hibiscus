@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <herd>java</herd>
+  <maintainer>
+    <email>gentoo@posteo.de</email>
+    <name>Fabian Köster</name>
+  </maintainer>
+  <longdescription>
+    Hibiscus is a free Homebanking application, especially for German bank accounts.
+    It is based on the HBCI (FinTS) implementation HBCI4Java and runs as a plugin for dev-java/jameica.
+  </longdescription>
+</pkgmetadata>

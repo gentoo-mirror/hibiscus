@@ -29,7 +29,7 @@ COMMON_DEP="~dev-java/willuhn-util-${MY_PV}
 	>=dev-java/xmlrpc-3.1.3
 	>=dev-java/commons-cli-1.2
 	>=dev-java/commons-collections-3.2.1
-	>=dev-java/commons-lang-2.6
+	dev-java/commons-lang:2.1
 	>=dev-java/commons-logging-1.2
 	dev-java/swtcalendar
 	dev-java/bcprov:1.45
