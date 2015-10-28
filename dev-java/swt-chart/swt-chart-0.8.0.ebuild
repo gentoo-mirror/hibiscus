@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="2"
 
@@ -20,8 +20,8 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 COMMON_DEP="dev-java/swt:3.7
-			dev-java/eclipse-jface:3.8
-			dev-java/eclipse-core-commands:3.6"
+	dev-java/eclipse-jface:3.8
+	dev-java/eclipse-core-commands:3.6"
 
 # Remove jameica dep which is only needed for jface
 DEPEND="${COMMON_DEP}
@@ -33,7 +33,7 @@ RDEPEND="${COMMON_DEP}
 S="${WORKDIR}"
 
 src_unpack() {
-    default
+	default
 	cd "${WORKDIR}"
 	unzip plugins/org.swtchart_*.jar -d org.swtchart
 	unzip plugins/org.swtchart.ext_*.jar -d org.swtchart.ext
@@ -47,7 +47,7 @@ java_prepare() {
 src_compile() {
 
 #        local classpath="$(java-pkg_getjars swt-3.7)"
-	EANT_GENTOO_CLASSPATH="swt-3.7,eclipse-jface-3.8,eclipse-core-commands-3.6" eant build 
+	EANT_GENTOO_CLASSPATH="swt-3.7,eclipse-jface-3.8,eclipse-core-commands-3.6" eant build
 
 #	mkdir -p bin/swtchart bin/swtchart-ext
 
@@ -59,16 +59,15 @@ src_compile() {
 #        ejavac -cp "${classpath}:org.swtchart_${PV}.jar" -d bin/swtchart-ext @sources.list
 #        jar cf org.swtchart.ext_${PV}.jar -C bin/swtchart-ext .
 
-        # TODO: javadoc
+	# TODO: javadoc
 }
 
-
 src_install() {
-        java-pkg_newjar org.swtchart.jar org.swtchart.jar
-		java-pkg_newjar org.swtchart.ext.jar org.swtchart.ext.jar
+	java-pkg_newjar org.swtchart.jar org.swtchart.jar
+	java-pkg_newjar org.swtchart.ext.jar org.swtchart.ext.jar
 
 #        use doc && dodoc doc/*
 #        use doc && java-pkg_dojavadoc javadoc
 
- #       use source && java-pkg_dosrc src/de
+#       use source && java-pkg_dosrc src/de
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="5"
 JAVA_PKG_IUSE="doc source"
@@ -9,11 +9,11 @@ WANT_ANT_TASKS="ant-nodeps"
 inherit eutils java-pkg-2 java-ant-2
 
 if [[ ${PV} != 9999 ]]; then
-        SRC_URI="https://github.com/willuhn/hbci4java/archive/${COMMIT}.zip -> ${P}.zip"
-        KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://github.com/willuhn/hbci4java/archive/${COMMIT}.zip -> ${P}.zip"
+	KEYWORDS="~amd64 ~x86"
 else
-        inherit git-r3
-        EGIT_REPO_URI="https://github.com/willuhn/hbci4java.git"
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/willuhn/hbci4java.git"
 fi
 
 DESCRIPTION="A Java Library for HBCI/FinTS (Hibiscus Branch)"
@@ -42,12 +42,14 @@ QA_SONAME="usr/$(get_libdir)/lib${PN}-chipcard-linux.so"
 EANT_BUILD_TARGET="package"
 
 java_prepare() {
-	epatch ${FILESDIR}/java_home.patch
+
+	epatch "${FILESDIR}/java_home.patch"
 	eant clean
 	rm -f chipcard/lib/*
 }
 
 src_install() {
+
 	java-pkg_newjar dist/jar/hbci4java.jar
 
 	if use smartcard; then

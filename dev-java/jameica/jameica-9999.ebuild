@@ -1,18 +1,21 @@
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
 EAPI="5"
 JAVA_PKG_IUSE="doc source"
 
 WANT_ANT_TASKS="ant-nodeps"
 inherit eutils java-pkg-2 java-ant-2 versionator
 
-
 if [[ ${PV} != 9999 ]]; then
-        SRC_URI="http://www.willuhn.de/products/${PN}/releases/${MY_PV}/${PN}/${PN}.src.zip -> ${P}.zip"
-        KEYWORDS="~amd64 ~x86"
-				MY_PV="$(get_version_component_range 1-2)"
+	SRC_URI="http://www.willuhn.de/products/${PN}/releases/${MY_PV}/${PN}/${PN}.src.zip -> ${P}.zip"
+	KEYWORDS="~amd64 ~x86"
+	MY_PV="$(get_version_component_range 1-2)"
 else
-        inherit git-r3
-        EGIT_REPO_URI="https://github.com/willuhn/jameica.git"
-				MY_PV="9999"
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/willuhn/jameica.git"
+	MY_PV="9999"
 fi
 
 DESCRIPTION="A Java Framework and Runtime Environment"
@@ -42,15 +45,15 @@ COMMON_DEP="~dev-java/willuhn-util-${MY_PV}
 	dev-java/eclipse-ui-forms:3.1"
 
 RDEPEND=">=virtual/jre-1.6
-    ${COMMON_DEP}"
+	${COMMON_DEP}"
 
 DEPEND=">=virtual/jdk-1.6
 	app-arch/unzip
 	${COMMON_DEP}"
 
 java_prepare() {
-	rm -vr ${S}/lib/*
-	cd ${S}/lib
+	rm -vr "${S}/lib/"*
+	cd "${S}/lib"
 
 	mkdir gentoo
 	local xmlrpc
@@ -70,7 +73,7 @@ src_compile() {
 }
 
 src_install() {
-    java-pkg_newjar releases/*/jameica/jameica.jar
+	java-pkg_newjar releases/*/jameica/jameica.jar
 
 	insinto /usr/share/${PN}
 	doins plugin.xml
@@ -81,6 +84,6 @@ src_install() {
 	newicon	build/${PN}-icon.png ${PN}-icon.png || die "newicon failed"
 	make_desktop_entry jameica "Jameica" ${PN}-icon "Office;Finance"
 
-    use doc && java-pkg_dojavadoc releases/${PV}-0/javadoc
-    use source && java-pkg_dosrc src/de
+	use doc && java-pkg_dojavadoc releases/${PV}-0/javadoc
+	use source && java-pkg_dosrc src/de
 }
