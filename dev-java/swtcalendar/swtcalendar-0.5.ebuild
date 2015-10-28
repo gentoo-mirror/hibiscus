@@ -37,4 +37,3 @@ src_install() {
 	java-pkg_dojar "${PN}.jar"
 	use source && java-pkg_dosrc src
 }
-

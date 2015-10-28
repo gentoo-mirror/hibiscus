@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="2"
 
@@ -35,16 +35,15 @@ src_compile() {
 	mkdir build
 	local classpath="$(java-pkg_getjars swt-3.7)"
 	find net -name '*.java' > sources.list
-        ejavac -d build -cp "${classpath}" @sources.list
-        jar cf ${PN}.jar -C build/ .
+	ejavac -d build -cp "${classpath}" @sources.list
+	jar cf ${PN}.jar -C build/ .
 
 	# TODO javadoc
 }
 
 src_install() {
-        java-pkg_newjar ${PN}.jar
+	java-pkg_newjar ${PN}.jar
 
-        #use doc && java-pkg_dohtml -r docs/*
-        use source && java-pkg_dosrc net
+	#use doc && java-pkg_dohtml -r docs/*
+	use source && java-pkg_dosrc net
 }
-
