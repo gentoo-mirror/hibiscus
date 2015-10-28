@@ -19,18 +19,17 @@ RDEPEND=">=virtual/jre-1.6
 
 DEPEND=">=virtual/jdk-1.6
 	app-arch/unzip
-        ${COMMON_DEP}"
-
-S=${WORKDIR}
+	dev-java/junit:4
+  ${COMMON_DEP}"
 
 java_prepare() {
-#	epatch ${FILESDIR}/${PV}-hibiscus-encoding.patch
-	rm -rv bin/* doc/api || die
+	rm -v *.jar || die
+  rm -rv bin/* || die
 }
 
 src_compile() {
 
-	local classpath="$(java-pkg_getjars itext-5)"
+	local classpath="$(java-pkg_getjars itext-5,junit-4)"
 
 	find src -name '*.java' > sources.list
 	ejavac -encoding latin1 -cp "${classpath}" -d bin @sources.list
@@ -38,12 +37,11 @@ src_compile() {
 	# TODO: javadoc
 }
 
-
 src_install() {
-        java-pkg_newjar ${PN}.jar
+  java-pkg_newjar ${PN}.jar
 
 	use doc && dodoc doc/*
-        use doc && java-pkg_dojavadoc javadoc
+  use doc && java-pkg_dojavadoc javadoc
 
-        use source && java-pkg_dosrc src/de
+  use source && java-pkg_dosrc src/de
 }

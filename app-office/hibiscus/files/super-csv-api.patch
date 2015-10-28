@@ -1,0 +1,40 @@
+Index: hibiscus-9999/src/de/willuhn/jameica/hbci/gui/dialogs/CSVImportDialog.java
+===================================================================
+--- hibiscus-9999.orig/src/de/willuhn/jameica/hbci/gui/dialogs/CSVImportDialog.java
++++ hibiscus-9999/src/de/willuhn/jameica/hbci/gui/dialogs/CSVImportDialog.java
+@@ -209,8 +209,6 @@ public class CSVImportDialog extends Abs
+       CsvPreference prefs = CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE;
+       String sep = p.getSeparatorChar();
+       String quo = p.getQuotingChar();
+-      if (sep != null && sep.length() == 1) prefs.setDelimiterChar(sep.charAt(0));
+-      if (quo != null && quo.length() == 1) prefs.setQuoteChar(quo.charAt(0));
+       
+       ICsvListReader csv = new CsvListReader(new InputStreamReader(new ByteArrayInputStream(this.data),p.getFileEncoding()),prefs);
+       List<String> line = null;
+@@ -567,4 +565,4 @@ public class CSVImportDialog extends Abs
+  *
+  * Revision 1.5  2008/04/24 11:37:21  willuhn
+  * @N BUGZILLA 304
+- **********************************************************************/
+\ No newline at end of file
++ **********************************************************************/
+Index: hibiscus-9999/src/de/willuhn/jameica/hbci/io/csv/CsvImporter.java
+===================================================================
+--- hibiscus-9999.orig/src/de/willuhn/jameica/hbci/io/csv/CsvImporter.java
++++ hibiscus-9999/src/de/willuhn/jameica/hbci/io/csv/CsvImporter.java
+@@ -91,8 +91,6 @@ public class CsvImporter implements Impo
+       CsvPreference prefs = CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE;
+       String sep = p.getSeparatorChar();
+       String quo = p.getQuotingChar();
+-      if (sep != null && sep.length() == 1) prefs.setDelimiterChar(sep.charAt(0));
+-      if (quo != null && quo.length() == 1) prefs.setQuoteChar(quo.charAt(0));
+       ICsvListReader csv = new CsvListReader(new InputStreamReader(new ByteArrayInputStream(data),p.getFileEncoding()),prefs);
+ 
+       List<String> line = csv.read();
+@@ -416,4 +414,4 @@ public class CsvImporter implements Impo
+  *   - Import-Preset wird nun im XML-Format nach ~/.jameica/hibiscus/csv serialisiert. Damit wird es kuenftig moeglich sein,
+  *     CSV-Import-Profile vorzukonfigurieren und anschliessend zu exportieren, um sie mit anderen Usern teilen zu koennen
+  *
+- **********************************************************************/
+\ No newline at end of file
++ **********************************************************************/
