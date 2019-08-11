@@ -2,3 +2,5 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
+dev-java/swt-paperclips:ui - Enable user interface classes
+net-libs/willuhn-hbci4java:ctapi - Enable CTAPI compatibility using sys-libs/pcsc-ctapi-wrapper
